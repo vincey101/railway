@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 require("dotenv").config();
 
 //mongoose
-mongoose.connect(process.env.MONGODB, (err) => {
-    if (err) throw err;
-    console.log("Connected to Mongo");
-});
+// mongoose.connect(process.env.MONGODB, (err) => {
+//     if (err) throw err;
+//     console.log("Connected to Mongo");
+// });
 
 //middleware
 app.use(express.json());
