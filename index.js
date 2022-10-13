@@ -1,35 +1,24 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const myRoutes = require('./routes')
+
 require("dotenv").config();
 
 //mongoose
-// mongoose.connect(process.env.MONGODB, (err) => {
-//     if (err) throw err;
-//     console.log("Connected to Mongo");
-// });
+mongoose.connect(process.env.MONGODB, (err) => {
+    if (err) throw err;
+    console.log("Connected to Mongo");
+});
 
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-//routes
-app.get('/', (req, res) => {
-    res.send("hello world");
-});
-
-//post routes
-app.post('/signup', (req, res) => {
-    res.send({ message: "this is the signup page!" });
-});
-
-app.post('/signin', (req, res) => {
-    res.send({ message: "this is the signin page!" });
-});
-
+app.use("/", myRoutes)
 
 //server
-app.listen(process.env.PORT || 8080, () => {
-    console.log('Server listening on port 8080');
+app.listen(process.env.PORT || 8081, () => {
+    console.log(`Server listening on port ${process.env.PORT}`);
 });
